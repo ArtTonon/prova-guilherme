@@ -2,7 +2,7 @@
 
 namespace App;
 
-interface InterfaceVeiculo
+interface InterfaceFuncionario
 {
     public function acelerar($velocidade);
 

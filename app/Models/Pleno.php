@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Automovel;
+use App\Models\Funcionario;
 
-class Moto extends Automovel
+class Pleno extends Funcionario
 {
-    public function fazerRevisão() : string {
+    public function horasTrabalhadas() : string {
         return "Foi feita a revisão da sua moto! <br>";
     }
 }

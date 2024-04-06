@@ -1,0 +1,160 @@
+<?php
+
+abstract class Funcionario {
+    protected $nome;
+    protected $salario;
+    protected $numeroDeInscricao;
+
+    public function __construct($nome, $salario, $numeroDeInscricao) {
+        $this->nome = $nome;
+        $this->salario = $salario;
+        $this->numeroDeInscricao = $numeroDeInscricao;
+    }
+
+    public function aumentaSalario() {
+        $this->salario += $this->salario * 0.10;
+    }
+
+    public function calcularImposto() {
+        $ir = 0.11;
+        $inss = 0.08;
+        $sindicato = 0.05;
+
+        $total = $this->salario * (1 - $ir - $inss - $sindicato);
+
+        return $total;
+    }
+}
+
+class Junior extends Funcionario {
+    public $horasTrabalhadas;
+
+    public function __construct($nome, $salario, $numeroDeInscricao, $horasTrabalhadas) {
+        parent::__construct($nome, $salario, $numeroDeInscricao);
+        $this->horasTrabalhadas = $horasTrabalhadas;
+    }
+
+    public function aumentaSalario() {
+        if ($this->horasTrabalhadas < 80) {
+            return;
+        }
+        parent::aumentaSalario();
+    }
+}
+
+class Pleno extends Funcionario {
+    public $horasTrabalhadas;
+
+    public function __construct($nome, $salario, $numeroDeInscricao, $horasTrabalhadas) {
+        parent::__construct($nome, $salario, $numeroDeInscricao);
+        $this->horasTrabalhadas = $horasTrabalhadas;
+    }
+
+    public function aumentaSalario() {
+        if ($this->horasTrabalhadas < 100) {
+            return;
+        }
+        parent::aumentaSalario();
+        $this->salario += $this->salario * 0.15;
+    }
+}
+
+class Senior extends Funcionario {
+    public $horasTrabalhadas;
+
+    public function __construct($nome, $salario, $numeroDeInscricao, $horasTrabalhadas) {
+        parent::__construct($nome, $salario, $numeroDeInscricao);
+        $this->horasTrabalhadas = $horasTrabalhadas;
+    }
+
+    public function aumentaSalario() {
+        if ($this->horasTrabalhadas < 120) {
+            return;
+        }
+        parent::aumentaSalario();
+        $this->salario += $this->salario * 0.20;
+    }
+}
+
+/**/
+
+<?php
+
+abstract class Funcionario {
+    protected $nome;
+    protected $salario;
+    protected $numeroDeInscricao;
+
+    public function __construct($nome, $numeroDeInscricao, $salario) {
+        $this->nome = $nome;
+        $this->numeroDeInscricao = $numeroDeInscricao;
+        $this->salario = $salario;
+    }
+
+    public function aumentaSalario() {
+        $this->salario += $this->salario * 0.10;
+    }
+
+    public function calcularImposto() {
+        $this->salario -= $this->salario * 0.11;
+        $this->salario -= $this->salario * 0.08;
+        $this->salario -= $this->salario * 0.05;
+    }
+
+    public function getNome() {
+        return $this->nome;
+    }
+
+    public function getSalario() {
+        return $this->salario;
+    }
+}
+
+class Junior extends Funcionario {
+    protected $horasTrabalhadas;
+
+    public function __construct($nome, $numeroDeInscricao, $salario, $horasTrabalhadas) {
+        parent::__construct($nome, $numeroDeInscricao, $salario);
+        $this->horasTrabalhadas = $horasTrabalhadas;
+    }
+
+    public function aumentaSalario() {
+        if ($this->horasTrabalhadas >= 80) {
+            parent::aumentaSalario();
+        }
+    }
+}
+
+class Pleno extends Funcionario {
+    protected $horasTrabalhadas;
+
+    public function __construct($nome, $numeroDeInscricao, $salario, $horasTrabalhadas) {
+        parent::__construct($nome, $numeroDeInscricao, $salario);
+        $this->horasTrabalhadas = $horasTrabalhadas;
+    }
+
+    public function aumentaSalario() {
+        if ($this->horasTrabalhadas >= 100) {
+            $this->salario += $this->salario * 0.15;
+        } else {
+            parent::aumentaSalario();
+        }
+    }
+}
+
+class Senior extends Funcionario {
+    protected $horasTrabalhadas;
+
+    public function __construct($nome, $numeroDeInscricao, $salario, $horasTrabalhadas) {
+        parent::__construct($nome, $numeroDeInscricao, $salario);
+        $this->horasTrabalhadas = $horasTrabalhadas;
+    }
+
+    public function aumentaSalario() {
+        if ($this->horasTrabalhadas >= 120) {
+            $this->salario += $this->salario * 0.20;
+        } else {
+            parent::aumentaSalario();
+        }
+    }
+}
