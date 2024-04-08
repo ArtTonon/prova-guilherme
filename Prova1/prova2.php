@@ -75,8 +75,8 @@ $junior = new Junior("Guilherme", 1500, 1234, 90);
 $pleno = new Pleno("Ana", 2000, 5678, 110);
 $senior = new Senior("Pedro", 2500, 9012, 130);
 
-echo "Salário de Guilherme antes do aumento: " . $junior->salario . "\n";
+echo "Salário de Guilherme antes do aumento: " . $junior->$salario . "\n";
 $junior->aumentaSalario();
-echo "Salário de Guilherme depois do aumento: " . $junior->salario . "\n";
+echo "Salário de Guilherme depois do aumento: " . $junior->$salario . "\n";
 
 echo "Imposto de renda de Ana: " . $pleno->calcularImposto() . "\n";

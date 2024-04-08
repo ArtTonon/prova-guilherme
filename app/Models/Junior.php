@@ -8,7 +8,30 @@ use App\Models\Funcionario;
 
 class Junior extends Funcionario
 {
-    public function horasTrabalhadas() : string {
-        return "Foi feita a revisão do seu carro!";
+    protected $horasTrabalhadas;
+
+    public function saldoAtual() {
+        return parent::getSaldo() ;
     }
+    
+    public function aumentaSalario($aumentar) {
+        $this->salario += $this->salario * 0.10;
+        if ($this->horasTrabalhadas >= 80) {
+            $this->salario *= 1.1;
+        }
+    }
+    
+    public function calcularImposto($imposto) {
+        $impostoRenda = 0.11 * $this->salario;
+        $inss = 0.08 * $this->salario;
+        $sindicato = 0.05 * $this->salario;
+        return $impostoRenda + $inss + $sindicato;
+    }
+
+    public function __construct($nome, $salario, $numerodeinscricao, $horasTrabalhadas) {
+        parent::setNome($nome);
+        parent::setNumeroDeInscrição($numerodeinscricao); 
+        parent::setSalario($salario);
+        parent::sethorasTrabalhadas($horasTrabalhadas);
+    }   
 }

@@ -4,13 +4,10 @@ namespace App;
 
 interface InterfaceFuncionario
 {
-    public function acelerar($velocidade);
+    public function saldoAtual();
+    
+    public function aumentaSalario($aumentar);
 
-    public function frear($velocidade);
-
-    public function parar();
-
-    public function mudarDeMarcha($marcha);
-
-    public function fazerRevisão();
+    public function calcularImposto($imposto);
+    
 }

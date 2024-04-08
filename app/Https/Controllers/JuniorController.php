@@ -7,36 +7,22 @@ use App\Models\Junior;
 
 class JuniorController extends Controller
 {
-    public function acelerar(string $marca, string $modelo, int $velocidade) {
-        $junior = new Junior($marca, $modelo);
-        return view('juniorAcelerar')
-        ->with('junior', $junior)
-        ->with('velocidade', $velocidade);
-    }
-
-    public function frear(string $marca, string $modelo, int $velocidade) {
-        $junior = new Junior($marca, $modelo);
-        return view('juniorFrear')
-        ->with('junior', $junior)
-        ->with('velocidade', $velocidade);
-    }
-
-    public function parar(string $marca, string $modelo) {
-        $junior = new Junior($marca, $modelo);
-        return view('juniorPara')
+    protected $horasTrabalhadas;
+    
+    public function saldoAtual(int $nome, int $numerodeiscricao, float $salario) {
+        $horasTrabalhadas = request()->query('horasTrabalhadas');
+        $junior = new Junior($nome, $salario, $numerodeiscricao, $horasTrabalhadas);
+        return view('juniorSalario')
         ->with('junior', $junior);
     }
 
-    public function mudarDeMarcha(string $marca, string $modelo, int $marcha) {
-        $junior = new Junior($marca, $modelo);
-        return view('juniorMudarDeMarcha')
+    public function aumentaSalario(int $nome, int $numerodeiscricao, float $salario, float $valorAumentado) {
+        $horasTrabalhadas = request()->query('horasTrabalhadas');
+        $junior = new Junior($nome, $salario, $numerodeiscricao, $horasTrabalhadas);
+        $junior->aumentaSalario($valorAumentado);
+        return view('juniorAumentar')
         ->with('junior', $junior)
-        ->with('marcha', $marcha);
-    }
-
-    public function fazerRevisão(string $marca, string $modelo) {
-        $junior = new Junior($marca, $modelo);
-        return view('juniorFazerRevisão')
-        ->with('junior', $junior);
+        ->with('saldoInicial', $salario)
+        ->with('valorAumentar', $valorAumentado);
     }
 }

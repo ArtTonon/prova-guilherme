@@ -12,7 +12,7 @@ abstract class Funcionario extends Model implements InterfaceFuncionario
 
     private $nome;
 
-    private $idade;
+    private $salario;
 
     private $numerodeiscricao;
 
@@ -24,12 +24,12 @@ abstract class Funcionario extends Model implements InterfaceFuncionario
         $this->nome = $nome;
     }
 
-    public function getIdade() {
-        return $this->idade;
+    public function getSalario() {
+        return $this->salario;
     }
 
-    public function setIdade($idade) {
-        $this->idade = $idade;
+    public function setSalario($salario) {
+        $this->salario = $salario;
     }
 
     public function getNumeroDeIscricao() {
@@ -40,22 +40,8 @@ abstract class Funcionario extends Model implements InterfaceFuncionario
         $this->numerodeiscricao = $numerodeiscricao;
     }
 
-    public function aumentarSalario($velocidade) : string {
-        return "O veículo freou até: " . $velocidade . "km/h." ;
-    }
-
-    public function calcularImposto($velocidade) : string {
-        return "O veículo acelerou até: " . $velocidade . "km/h." ;
-    }
-
-    /*public function __construct($nome, $idade, $numerodeiscricao) {
-        $this->setNome($nome);
-        $this->setIdade($idade);
-        $this->setNumeroDeIscricao($numerodeiscricao);
-    }*/
-
-    public function __construct($nome, $numeroDeInscricao, $salario, $horasTrabalhadas) {
-        parent::__construct($nome, $numeroDeInscricao, $salario);
+    public function __construct($nome, $salario, $numerodeinscricao, $horasTrabalhadas) {
+        parent::__construct($nome, $salario, $numerodeinscricao);
         $this->horasTrabalhadas = $horasTrabalhadas;
     }
 }

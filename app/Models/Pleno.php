@@ -8,7 +8,29 @@ use App\Models\Funcionario;
 
 class Pleno extends Funcionario
 {
-    public function horasTrabalhadas() : string {
-        return "Foi feita a revisão da sua moto! <br>";
+    protected $horasTrabalhadas;
+
+    public function saldoAtual() {
+        return parent::getSaldo() ;
+    }
+    
+    public function aumentaSalario($aumentar) {
+        if ($this->horasTrabalhadas >= 100) {
+            $this->salario *= 1.15;
+        }
+    }
+
+    public function calcularImposto($imposto) {
+        $impostoRenda = 0.11 * $this->salario;
+        $inss = 0.08 * $this->salario;
+        $sindicato = 0.05 * $this->salario;
+        return $impostoRenda + $inss + $sindicato;
+    }
+
+    public function __construct($nome, $salario, $numerodeinscricao, $horasTrabalhadas) {
+        parent::setNome($nome);
+        parent::setNumeroDeInscrição($numerodeinscricao); 
+        parent::setSalario($salario);
+        parent::sethorasTrabalhadas($horasTrabalhadas);
     }
 }
